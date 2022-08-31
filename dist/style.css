@@ -170,7 +170,7 @@ input[type="radio"] {
     justify-content: left;
     text-align: left;
 }
-#editar{
+.editar{
     padding: 10px 16px;
     width: 78px;
     height: 39px;
@@ -179,7 +179,7 @@ input[type="radio"] {
     color: var(--branco);
     margin: 25px 25px 25px 50px ;
 }
-#excluir{
+.excluir{
     padding: 10px 16px;
     width: 85px;
     height: 39px;

@@ -1,5 +1,6 @@
 import { Pacote } from "../model/pacote.js";
 import { Pacotes } from "../model/pacotes.js";
+import { PacoteService } from "../service/pacote-service.js";
 import { PacotesView } from "../view/pacotes-view.js";
 
 
@@ -9,9 +10,12 @@ import { PacotesView } from "../view/pacotes-view.js";
         private inputStatus:NodeList//HTMLInputElement;
         private inputData:HTMLInputElement;
         private inputDescricaoPacote:HTMLInputElement;
+        private botaoEditar:NodeList
+
         //variaveis manipulacao objeto
         private pacotes=new Pacotes();
         private pacotesView= new PacotesView("#cards");
+        private pacoteService= new PacoteService();
         
         constructor(){
             this.inputPacote=document.querySelector("#nome_pacote") as HTMLInputElement;  
@@ -20,7 +24,7 @@ import { PacotesView } from "../view/pacotes-view.js";
             
             this.inputData=document.querySelector("#input-data-viagem") as HTMLInputElement;  
             this.inputDescricaoPacote=document.querySelector("#txt_descricao_pacote") as HTMLInputElement;  
-            
+            this.botaoEditar=document.querySelectorAll(".editar") as NodeList
         }
         adiciona(){
             //console.log(this.inputStatus)
@@ -34,6 +38,20 @@ import { PacotesView } from "../view/pacotes-view.js";
             this.pacotes.adicionar(pacote);
             console.log(this.pacotes.lista());
             this.pacotesView.update(this.pacotes);
+        }
+
+        public importaDados(){
+            this.pacoteService.obterPacotes()
+                .then(pacotesApi=>{//ista de pacotes
+                    for(let pacote of pacotesApi){
+                    
+                        this.pacotes.adicionar(pacote)
+                    }
+                    this.pacotesView.update(this.pacotes);
+                }
+                    
+                )
+                     
         }
         
     }

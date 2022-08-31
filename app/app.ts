@@ -5,7 +5,10 @@ const pacoteController=new PacoteController();
 const btn_cadastrar=document.querySelector("#btn_cadastrar") as HTMLElement;
 
 
-    
+//atalizao da tabela pela api
+window.onload=()=>pacoteController.importaDados();
+
+//botao cadastrar    
 if(btn_cadastrar){
     btn_cadastrar.addEventListener('click',event=>{
         event.preventDefault();
