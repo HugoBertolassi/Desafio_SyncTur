@@ -1,0 +1,200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@100&family=Squada+One&display=swap');
+
+
+:root{
+    --cor-primaria:#F6511D;
+    --cor-secundaria:#8458FF;
+    --cor-cadastrar:#8458FF;
+    --cor-editar:#FFC107;
+    --cor-excluir:#DC3545;
+    --black:#000000;
+    --branco:#ffffff;
+    --cinza:#68717A;
+    --fonte-padrao: 'Inter', sans-serif;
+   
+
+}
+*{
+    margin: 0px;
+    padding: 0px;   
+    font-family:  var(--fonte-padrao)
+}
+body{
+    width: 100%;
+    margin: auto;
+    font-family:  var(--fonte-padrao)
+}
+
+
+h1,h2{
+    font-family: var(--fonte-padrao);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px; 
+}
+h3{
+    font-family: var(--fonte-padrao);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+}
+p{
+    font-family:  var(--fonte-padrao);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;    
+}
+p .conteudo{
+    color: var(--cinza);
+}
+
+textarea{
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    margin-top:25px;
+}
+
+
+header{
+    max-width: 1440px;
+    margin: auto;
+    background-color:#F8F9FA ;
+}
+.logo{
+    font-family: var(--fonte-padrao);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    margin: 5px;
+}
+
+.flex-column{
+    display:flex;
+    flex-direction: column;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+main{
+    max-width: 1440px;
+    width:100%;
+    margin: 0px auto;
+    padding-left: 50px;
+    text-align: center;
+    /*justify-content: space-between;*/
+    margin-top: 50px;
+}
+section{
+    width: 100%;
+    margin: auto;
+
+}
+.cadastro-central{
+    justify-content: space-between;
+    margin: 50px 0px;
+}
+.cadastro-esquerda{
+    text-align: left;
+    align-items: left; 
+}
+#nome_pacote{
+    height: 38px;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    margin-top: 25px;
+   
+}
+
+.cadastro-cadastro-esquerda{
+    margin-top: 20px;
+
+}
+input[type="radio"] {
+  -ms-appearance: checkbox; 
+}
+#status_pacote_ativo{
+    padding-top:auto ;
+    margin: 15px 0px;
+    
+    
+}
+.cadastro-cadastro-direita{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#input-data-viagem{
+    width: 290px;
+    margin-top:25px;
+    height: 38px;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+}
+
+
+
+.cadastro-direita{
+    width:50%;
+    text-align: left;
+    align-items: left;
+    /*padding:0px 30px;*/
+}
+#txt_descricao_pacote{
+    width: 700px;
+    max-width: 100%;
+    height: 160px ;
+    display: block;
+    /*margin-right:30px;*/
+    
+}
+
+
+.cadastrar{
+    align-self: center;
+    padding: 10px 16px;
+    width: 109px;
+    height: 39px;
+    background: #8458FF;
+    border-radius: 4px;
+    color: var(--branco);
+}
+
+.cards-card{
+    margin-top: 20px;
+    border: 1px solid var(--cinza);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+#editar{
+    padding: 10px 16px;
+    width: 78px;
+    height: 39px;
+    background: #FFC107;
+    border-radius: 4px;
+    color: var(--branco);
+    margin: 25px 25px 25px 50px ;
+}
+#excluir{
+    padding: 10px 16px;
+    width: 85px;
+    height: 39px;
+    background: #DC3545;
+    border-radius: 4px;
+    color: var(--branco);
+}
+
+.cards-card h2{
+    margin: 25px 0px;
+    margin-left: 50px;
+}
+
+.cards-card p{
+    margin-left: 50px;
+    
+}
+

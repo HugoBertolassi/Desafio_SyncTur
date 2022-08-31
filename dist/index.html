@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTur</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <p class="logo">SyncTur</p>
+    </header>
+    <main class="flex-column">
+        <section class="cadastro flex-column">
+            <h1>Cadastrar Pacotes</h1>
+            <div class="cadastro-central flex-row">
+                <div class="cadastro-esquerda flex-column">
+                    <h2>Pacote</h2>
+                    <input type="text" id="nome_pacote" placeholder="Digite o nome completo">
+                    <div class="cadastro flex-row">
+                        <div class="cadastro-cadastro-esquerda flex-column">
+                            <h2>Status do Pacote</h2>
+                            <div>
+                                <input type="radio" name="status_pacote" id="status_pacote_ativo" value="ativo">
+                                <label for="status_pacote_ativo" id="l_status_pacote_ativo">Ativo</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="status_pacote" id="status_pacote_inativo" value="inativo" checked>
+                                <label for="status_pacote_inativo" id="l_status_pacote_inativo">Inativo</label>
+                            
+                            </div>
+                        </div>
+                        <div class="cadastro-cadastro-direita">
+                            <h2>Data da Viagem</h2>
+                            <input type="date"  id="input-data-viagem" placeholder="Data">
+                        </div>
+                    </div>
+                </div>
+                <div class="cadastro-direita .flex-column">
+                   <h2>Descrição</h2>
+                   <textarea  id="txt_descricao_pacote" placeholder="Descrição do pacote"></textarea> 
+                </div>  
+                
+            </div>
+            <button id="btn_cadastrar" class="cadastrar">Cadastrar</button>             
+        </section>
+        <section id="cards">
+            <div class="cards-card">
+                <h2>${this.nome}</h2>
+                <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p>Data de viagem:17/08/2022</p>
+                <div class="cards-card-botoes">
+                    <button id="editar">Editar</button>
+                    <button id="excluir">Excluir</button>
+                </div>
+                <div class="cards-card">
+                    <h2>Pacote X</h2>
+                    <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p>Data de viagem:17/08/2022</p>
+                    <div class="cards-card-botoes">
+                        <button id="editar">Editar</button>
+                        <button id="excluir">Excluir</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script>var exports = {};</script>
+    <script type="module" src="./js/app.js"></script>
+    <!--<script>var exports = {};</script>Habilita as esportacoes do javascript-->
+</body>
+</html>
