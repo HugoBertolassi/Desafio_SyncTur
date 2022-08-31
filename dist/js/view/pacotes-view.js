@@ -11,10 +11,11 @@ export class PacotesView {
                 <p>${pacote.descricao}</p>
                 <p>Data de viagem:${this.dataTexto(pacote.data)}</p>
                 <div class="cards-card-botoes">
-                    <button class="editar">Editar</button>
-                    <button class="excluir">Excluir</button>
+                    <button class="editar" id="editar${pacote.id}" value="${pacote.id}">Editar</button>
+                    <button class="excluir" id="excluir${pacote.id}" value="${pacote.id}">Excluir</button>
                 </div>
             </div>
+            
         `;
         }).join();
     }

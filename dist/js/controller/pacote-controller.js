@@ -11,14 +11,13 @@ export class PacoteController {
         this.inputStatus = document.querySelectorAll('input[name="status_pacote"]');
         this.inputData = document.querySelector("#input-data-viagem");
         this.inputDescricaoPacote = document.querySelector("#txt_descricao_pacote");
-        this.botaoEditar = document.querySelectorAll(".editar");
     }
     adiciona() {
         const pacote = Pacote.criar(this.inputPacote.value, this.inputDescricaoPacote.value, this.inputData.value, this.inputStatus);
-        console.log(pacote);
         this.pacotes.adicionar(pacote);
-        console.log(this.pacotes.lista());
         this.pacotesView.update(this.pacotes);
+    }
+    editar() {
     }
     importaDados() {
         this.pacoteService.obterPacotes()

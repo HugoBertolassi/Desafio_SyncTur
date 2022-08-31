@@ -17,7 +17,7 @@ export class Pacote {
         const exp = /-/g;//expressao regular
         const date = new Date(dataString.replace(exp, ','));
 
-        //tratamento de dado radio button
+        //tratamento de dado radio button para pegar o checked e retornar boolean
         let _status1: string
         let _status3: boolean = false;
         for (let i = 0; i < statusString.length; i++) {

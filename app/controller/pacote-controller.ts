@@ -10,7 +10,7 @@ import { PacotesView } from "../view/pacotes-view.js";
         private inputStatus:NodeList//HTMLInputElement;
         private inputData:HTMLInputElement;
         private inputDescricaoPacote:HTMLInputElement;
-        private botaoEditar:NodeList
+       
 
         //variaveis manipulacao objeto
         private pacotes=new Pacotes();
@@ -24,7 +24,7 @@ import { PacotesView } from "../view/pacotes-view.js";
             
             this.inputData=document.querySelector("#input-data-viagem") as HTMLInputElement;  
             this.inputDescricaoPacote=document.querySelector("#txt_descricao_pacote") as HTMLInputElement;  
-            this.botaoEditar=document.querySelectorAll(".editar") as NodeList
+            
         }
         adiciona(){
             //console.log(this.inputStatus)
@@ -34,10 +34,13 @@ import { PacotesView } from "../view/pacotes-view.js";
                 this.inputData.value,
                 this.inputStatus
             )
-            console.log(pacote);
+            //console.log(pacote);
             this.pacotes.adicionar(pacote);
-            console.log(this.pacotes.lista());
+            //console.log(this.pacotes.lista());
             this.pacotesView.update(this.pacotes);
+        }
+        editar(){
+            
         }
 
         public importaDados(){

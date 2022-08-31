@@ -11,8 +11,12 @@ export class PacoteService{
             .then((dados:PacoteInterface[])=>{
                 
                 return dados.map((pacoteApi)=>{
-                    
+                   /* console.log('dados')
+                    console.log(dados)
+                    console.log("pacoteApi")
+                    console.log(pacoteApi)*/
                     let data= new Date(pacoteApi.data)//corrigir a data recebida pela API
+                    
                     return new Pacote(
                         pacoteApi.nome,
                         pacoteApi.descricao,

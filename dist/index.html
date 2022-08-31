@@ -44,7 +44,13 @@
                 </div>  
                 
             </div>
-            <button id="btn_cadastrar" class="cadastrar">Cadastrar</button>             
+            <button id="btn_cadastrar" class="cadastrar" >Cadastrar</button>
+            <button id="btn_editar22" class="cadastrar" >Editar</button>
+            <script>
+                const botaoEditar=document.querySelector("#btn_editar22");
+                botaoEditar.addEventListener('click',()=>{
+                    console.log("oi html")})
+            </script>             
         </section>
         <section id="cards">
             <div class="cards-card">
@@ -52,10 +58,10 @@
                 <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <p>Data de viagem:17/08/2022</p>
                 <div class="cards-card-botoes">
-                    <button id="editar">Editar</button>
+                    <button id="editar">Editar</button> 
                     <button id="excluir">Excluir</button>
                 </div>
-                
+
                 <div class="cards-card">
                     <h2>Pacote X</h2>
                     <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -70,8 +76,17 @@
     <footer>
 
     </footer>
+
+    <!--<script>
+        function editarClick(){
+    //console.log("oiassasa")
+    //console.log(id)
+}
+    </script>
+    -->
     <script>var exports = {};</script>
     <script type="module" src="./js/app.js"></script>
+  
     <!--<script>var exports = {};</script>Habilita as esportacoes do javascript-->
 </body>
 </html>
