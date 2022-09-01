@@ -1,3 +1,4 @@
+import { AtualizarEventListenerCards } from "../app.js";
 import { Pacote } from "../model/pacote.js";
 import { Pacotes } from "../model/pacotes.js";
 import { PacoteService } from "../service/pacote-service.js";
@@ -15,9 +16,20 @@ export class PacoteController {
     adiciona() {
         const pacote = Pacote.criar(this.inputPacote.value, this.inputDescricaoPacote.value, this.inputData.value, this.inputStatus);
         this.pacotes.adicionar(pacote);
+        console.log(this.pacotes.lista());
+        AtualizarEventListenerCards();
         this.pacotesView.update(this.pacotes);
     }
-    editar() {
+    editar(seletor) {
+        this.pacotes.editar(seletor);
+        AtualizarEventListenerCards();
+        this.pacotesView.update(this.pacotes);
+    }
+    excluir(seletor) {
+        console.log(this.pacotes.lista());
+        this.pacotes.excluir(seletor);
+        AtualizarEventListenerCards();
+        this.pacotesView.update(this.pacotes);
     }
     importaDados() {
         this.pacoteService.obterPacotes()

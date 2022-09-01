@@ -4,7 +4,12 @@ export class PacotesView {
         this.elemento = elemento;
     }
     template(model) {
-        return model.lista().map(pacote => {
+        return `
+      <script>
+      import { olar } from "./click.js";
+      alert("hello world")  
+      olar()</script>
+            ${model.lista().map(pacote => {
             return `
             <div class="cards-card">
                 <h2>${pacote.id}-${pacote.nome}</h2>
@@ -17,7 +22,7 @@ export class PacotesView {
             </div>
             
         `;
-        }).join();
+        }).join()}`;
     }
     update(model) {
         this.elemento.innerHTML = this.template(model);

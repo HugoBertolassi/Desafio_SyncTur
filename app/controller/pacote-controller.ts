@@ -1,3 +1,5 @@
+
+import {  AtualizarEventListenerCards } from "../app.js";
 import { Pacote } from "../model/pacote.js";
 import { Pacotes } from "../model/pacotes.js";
 import { PacoteService } from "../service/pacote-service.js";
@@ -36,11 +38,22 @@ import { PacotesView } from "../view/pacotes-view.js";
             )
             //console.log(pacote);
             this.pacotes.adicionar(pacote);
-            //console.log(this.pacotes.lista());
+            console.log(this.pacotes.lista());
+            AtualizarEventListenerCards()
             this.pacotesView.update(this.pacotes);
         }
-        editar(){
-            
+        editar(seletor:string){
+            this.pacotes.editar(seletor)
+            AtualizarEventListenerCards()
+            this.pacotesView.update(this.pacotes);
+        }
+        excluir(seletor:string){
+            console.log(this.pacotes.lista());
+            this.pacotes.excluir(seletor);
+            //console.log(this.pacotes.lista());
+            AtualizarEventListenerCards()
+            this.pacotesView.update(this.pacotes);
+
         }
 
         public importaDados(){

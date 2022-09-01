@@ -1,3 +1,4 @@
+
 import { PacoteController } from "./controller/pacote-controller.js";
 
 
@@ -17,13 +18,32 @@ btn_editar.addEventListener('click',event=>{
 })
 */
 //atalizao da tabela pela api
+export function  AtualizarEventListenerCards(){
+    console.log("funcao olar")
+    console.log()
+    setTimeout(() => {
+    let tamanho=document.querySelectorAll(".editar")
+
+    for(let i=0;i<tamanho.length;i++){
+        let seletor="#editar"+i.toString()
+        document.querySelector(seletor)?.addEventListener('click',()=>{
+            pacoteController.editar(seletor)
+        })
+        let seletor1="#excluir"+i.toString()
+        document.querySelector(seletor1)?.addEventListener('click',()=>{
+            pacoteController.excluir(seletor1)
+           // console.log(seletor1)
+        })
+    }
+  }, 3000)}
 window.onload=()=>{
     pacoteController.importaDados()
+    AtualizarEventListenerCards()
     //console.log("ola")
-    
+    /*
     setTimeout(() => {
         let tamanho=document.querySelectorAll(".editar")
-        console.log(tamanho);
+        //console.log(tamanho);
         //console.log(document.querySelector("#editar1"));
         //const botaoEditar=document.querySelector("#editar1");
         //botaoEditar?.addEventListener('click',()=>{
@@ -31,14 +51,15 @@ window.onload=()=>{
         for(let i=1;i<tamanho.length+1;i++){
             let seletor="#editar"+i.toString()
             document.querySelector(seletor)?.addEventListener('click',()=>{
-            console.log(seletor)
+                pacoteController.editar(seletor)
             })
             let seletor1="#excluir"+i.toString()
             document.querySelector(seletor1)?.addEventListener('click',()=>{
-            console.log(seletor1)
+                pacoteController.excluir(seletor1)
+               // console.log(seletor1)
             })
         }
-      }, 3000)
+      }, 3000)*/
 };
 
 

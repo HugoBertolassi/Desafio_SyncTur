@@ -8,7 +8,12 @@ export class PacotesView{
     }
 
     protected template(model:Pacotes):string{
-      return  model.lista().map(pacote=>{
+      return `
+      <script>
+      import { olar } from "./click.js";
+      alert("hello world")  
+      olar()</script>
+            ${model.lista().map(pacote=>{
             return`
             <div class="cards-card">
                 <h2>${pacote.id}-${pacote.nome}</h2>
@@ -21,7 +26,7 @@ export class PacotesView{
             </div>
             
         `
-        }).join();
+        }).join()}`
     }
 
     public update(model:Pacotes):void{
