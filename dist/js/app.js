@@ -6,6 +6,7 @@ export function AtualizarEventListenerCards(miliseconds) {
     setTimeout(() => {
         var _a, _b;
         let tamanho = document.querySelectorAll(".editar");
+        console.log("tamnho length: " + tamanho.length);
         for (let i = 0; i < tamanho.length; i++) {
             let seletor = "#editar" + i.toString();
             (_a = document.querySelector(seletor)) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {

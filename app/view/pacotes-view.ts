@@ -9,10 +9,6 @@ export class PacotesView{
 
     protected template(model:Pacotes):string{
       return `
-      <script>
-      import { olar } from "./click.js";
-      alert("hello world")  
-      olar()</script>
             ${model.lista().map(pacote=>{
             return`
             <div class="cards-card">
@@ -36,9 +32,13 @@ export class PacotesView{
 
     protected dataTexto(data:Date):string{
         let dataString:string;
-        dataString=(data.getDate().toString()+"/"
-                +data.getMonth().toString()+"/"
-                +data.getFullYear().toString()
+        //tratamento de numero com 1 digito
+        let mes=(data.getMonth()<10 ? "0"+(data.getMonth()+1).toString():(data.getMonth()+1).toString())//tratamento do texto mes <q 10
+        let dia=(data.getDate()<10 ? "0"+data.getDate().toString():data.getDate().toString())//tratamento do texto dia < q 10
+        
+        dataString=(dia+"/"
+                +mes+"/"
+                +data.getFullYear()
                 )
         return dataString
     }

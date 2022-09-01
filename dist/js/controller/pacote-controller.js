@@ -10,6 +10,8 @@ export class PacoteController {
         this.pacoteService = new PacoteService();
         this.inputPacote = document.querySelector("#nome_pacote");
         this.inputStatus = document.querySelectorAll('input[name="status_pacote"]');
+        this.inputStatusAtivo = document.querySelector('#status_pacote_ativo');
+        this.inputStatusInativo = document.querySelector('#status_pacote_inativo');
         this.inputData = document.querySelector("#input-data-viagem");
         this.inputDescricaoPacote = document.querySelector("#txt_descricao_pacote");
         this.inputID = document.querySelector("#input_ID");
@@ -39,6 +41,17 @@ export class PacoteController {
     editar(etapa, seletor) {
         if (etapa == 1 && seletor) {
             const pacote = this.pacotes.selecionar(seletor);
+            if (pacote.status == true) {
+                this.inputStatusAtivo.checked = true;
+                this.inputStatusAtivo.checked = true;
+                console.log("status vedadeiro");
+            }
+            else if (pacote.status == false) {
+                this.inputStatusInativo.checked = true;
+                console.log("status falso");
+            }
+            else
+                (console.log("Status do botao nao encontrado"));
             this.inputPacote.value = pacote.nome;
             this.inputDescricaoPacote.value = pacote.descricao;
             this.inputData.value = this.dataTexto(pacote.data);
@@ -54,8 +67,7 @@ export class PacoteController {
         else {
             throw Error("MEtodo em editar nao encontrado");
         }
-        console.log(this.pacotes.lista());
-        AtualizarEventListenerCards(500);
+        AtualizarEventListenerCards(1000);
         this.pacotesView.update(this.pacotes);
     }
     excluir(seletor) {
@@ -74,8 +86,8 @@ export class PacoteController {
     }
     dataTexto(data) {
         let dataString;
-        let mes = (data.getMonth() < 10 ? "0" + data.getMonth().toString() : data.getMonth().toString());
-        let dia = (data.getDate() < 10 ? "0" + data.getMonth().toString() : data.getDate().toString());
+        let mes = (data.getMonth() < 10 ? "0" + (data.getMonth() + 1).toString() : (data.getMonth() + 1).toString());
+        let dia = (data.getDate() < 10 ? "0" + data.getDate().toString() : data.getDate().toString());
         dataString = (data.getFullYear().toString() + "-"
             + mes + "-"
             + dia);

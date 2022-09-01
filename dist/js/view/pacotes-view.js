@@ -5,10 +5,6 @@ export class PacotesView {
     }
     template(model) {
         return `
-      <script>
-      import { olar } from "./click.js";
-      alert("hello world")  
-      olar()</script>
             ${model.lista().map(pacote => {
             return `
             <div class="cards-card">
@@ -29,9 +25,11 @@ export class PacotesView {
     }
     dataTexto(data) {
         let dataString;
-        dataString = (data.getDate().toString() + "/"
-            + data.getMonth().toString() + "/"
-            + data.getFullYear().toString());
+        let mes = (data.getMonth() < 10 ? "0" + (data.getMonth() + 1).toString() : (data.getMonth() + 1).toString());
+        let dia = (data.getDate() < 10 ? "0" + data.getDate().toString() : data.getDate().toString());
+        dataString = (dia + "/"
+            + mes + "/"
+            + data.getFullYear());
         return dataString;
     }
 }

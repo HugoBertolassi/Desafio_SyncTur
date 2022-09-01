@@ -9,7 +9,7 @@ const btn_editar=document.querySelector("#btn_editar")
 export function  AtualizarEventListenerCards(miliseconds:number){
     setTimeout(() => {
     let tamanho=document.querySelectorAll(".editar")
-
+    console.log("tamnho length: "+tamanho.length)
     for(let i=0;i<tamanho.length;i++){
         let seletor="#editar"+i.toString()
         document.querySelector(seletor)?.addEventListener('click',()=>{

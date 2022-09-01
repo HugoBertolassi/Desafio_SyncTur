@@ -15,6 +15,9 @@ import { PacotesView } from "../view/pacotes-view.js";
         private inputID:HTMLInputElement;
         private btnEditar:HTMLButtonElement;
         private btnCadastrar:HTMLButtonElement;
+        private inputStatusAtivo:HTMLInputElement;
+       
+        private inputStatusInativo:HTMLInputElement;
 
         //variaveis manipulacao objeto
         private pacotes=new Pacotes();
@@ -25,7 +28,9 @@ import { PacotesView } from "../view/pacotes-view.js";
             this.inputPacote=document.querySelector("#nome_pacote") as HTMLInputElement;  
             //this.inputStatus=document.querySelector('input[name="status_pacote"]:checked') as HTMLInputElement; 
             this.inputStatus=document.querySelectorAll('input[name="status_pacote"]') as  NodeList
-            
+            this.inputStatusAtivo=document.querySelector('#status_pacote_ativo') as  HTMLInputElement
+            this.inputStatusInativo=document.querySelector('#status_pacote_inativo') as  HTMLInputElement
+
             this.inputData=document.querySelector("#input-data-viagem") as HTMLInputElement;  
             this.inputDescricaoPacote=document.querySelector("#txt_descricao_pacote") as HTMLInputElement;
             this.inputID=document.querySelector("#input_ID") as HTMLInputElement;
@@ -85,6 +90,20 @@ import { PacotesView } from "../view/pacotes-view.js";
            if(etapa==1 && seletor){
                 const pacote=this.pacotes.selecionar(seletor)
 
+                //codigo tratamento radio button
+                if(pacote.status==true){
+                    this.inputStatusAtivo.checked=true;
+                    this.inputStatusAtivo.checked=true;
+                    console.log("status vedadeiro")
+                }
+                else if(pacote.status==false){
+                    this.inputStatusInativo.checked=true;
+                    console.log("status falso")
+                }
+                else(
+                    console.log("Status do botao nao encontrado")
+                )    
+                //injecao dos dados no html
                 this.inputPacote.value=pacote.nome;
                 this.inputDescricaoPacote.value=pacote.descricao;
                 this.inputData.value=this.dataTexto(pacote.data);
@@ -102,9 +121,9 @@ import { PacotesView } from "../view/pacotes-view.js";
                 throw Error("MEtodo em editar nao encontrado")
             }
             
-           console.log(this.pacotes.lista());
+           //console.log(this.pacotes.lista());
             
-            //console.log(this.pacotes.lista());
+            
             /*
             this.inputPacote.value=pacote.nome;
             this.inputDescricaoPacote.value=pacote.descricao;
@@ -114,7 +133,7 @@ import { PacotesView } from "../view/pacotes-view.js";
             
             //this.pacotes.editar(seletor,pacote)
             //console.log(pacote)
-            AtualizarEventListenerCards(500)
+            AtualizarEventListenerCards(1000)
             this.pacotesView.update(this.pacotes);
         }
         excluir(seletor:string){
@@ -140,8 +159,8 @@ import { PacotesView } from "../view/pacotes-view.js";
         protected dataTexto(data:Date):string{
             let dataString:string;
             
-            let mes=(data.getMonth()<10 ? "0"+data.getMonth().toString():data.getMonth().toString())//tratamento do texto mes <q 10
-            let dia=(data.getDate()<10 ? "0"+data.getMonth().toString():data.getDate().toString())//tratamento do texto dia < q 10
+            let mes=(data.getMonth()<10 ? "0"+(data.getMonth()+1).toString():(data.getMonth()+1).toString())//tratamento do texto mes <q 10
+            let dia=(data.getDate()<10 ? "0"+data.getDate().toString():data.getDate().toString())//tratamento do texto dia < q 10
             
             dataString=(data.getFullYear().toString()+"-"
                     +mes+"-"    
