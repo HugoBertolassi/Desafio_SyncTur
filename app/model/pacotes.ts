@@ -16,14 +16,17 @@ export class Pacotes{
 
         console.log(a)
     }
+    
     public excluir(seletor:string):void{
-        console.log(seletor)
-        let a=seletor.slice(8)
-        let b=parseInt(a)-1
-        console.log(this.pacotes)
-        this.pacotes.splice(b,1)//pega o indice de referencia, apaga
-        //console.log(this.pacotes)
-        //alert(`Item excluido com sucesso`)
+        let a=seletor.slice(8)//tratamento da string para retornar o id
+        let b=parseInt(a)//tranformacao do id em number
+        let i:number=0;
+        this.pacotes.map((data,index)=>{
+            if(data.id==b){
+                 i=index;
+            }  
+        })
+        this.pacotes.splice(i,1)//pega o indice de referencia, apaga
     }
 
     //lista os objetos pacote
