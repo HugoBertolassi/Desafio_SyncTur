@@ -10,7 +10,7 @@ export class Pacote {
         const data = new Date(this._data.getTime());
         return data;
     }
-    static criar(nomeString, descricaoString, dataString, statusString) {
+    static criar(nomeString, descricaoString, dataString, statusString, idString) {
         const exp = /-/g;
         const date = new Date(dataString.replace(exp, ','));
         let _status1;
@@ -26,8 +26,7 @@ export class Pacote {
                 }
             }
         }
-        const _id = 0;
-        console.log(`Nao esquecer de configurar o ID`);
+        const _id = idString;
         const pacote = new Pacote(nomeString, descricaoString, date, _status3, _id);
         return pacote;
     }

@@ -198,3 +198,9 @@ input[type="radio"] {
     
 }
 
+#btn_editar2{
+    display: none;
+}
+#input_ID{
+    display: none;
+}

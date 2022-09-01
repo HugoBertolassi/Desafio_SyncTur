@@ -4,7 +4,7 @@ export class Pacote {
         public descricao: string,
         private _data: Date,
         public status: boolean,
-        public id: number
+        public id: string
     ) { }
 
     get data(): Date {
@@ -13,7 +13,7 @@ export class Pacote {
     }
 
     //public static criar(nomeString:any,descricaoString:any,dataString:any,statusString:any):Pacote{
-    public static criar(nomeString: string, descricaoString: string, dataString: string, statusString: any): Pacote {
+    public static criar(nomeString: string, descricaoString: string, dataString: string, statusString: any,idString:string): Pacote {
         const exp = /-/g;//expressao regular
         const date = new Date(dataString.replace(exp, ','));
 
@@ -36,8 +36,8 @@ export class Pacote {
             }
         }
 
-        const _id = 0;
-        console.log(`Nao esquecer de configurar o ID`)
+        const _id = idString;
+        //console.log(`Nao esquecer de configurar o ID`)
         const pacote = new Pacote(
             nomeString,
             descricaoString,

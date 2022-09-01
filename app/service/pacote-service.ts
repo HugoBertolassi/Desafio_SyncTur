@@ -22,7 +22,7 @@ export class PacoteService{
                         pacoteApi.descricao,
                         data,
                         pacoteApi.status,
-                        pacoteApi.id
+                        pacoteApi.id.toString()
                     )
 
                 })

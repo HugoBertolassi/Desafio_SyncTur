@@ -9,7 +9,7 @@ export class PacoteService {
             .then((dados) => {
             return dados.map((pacoteApi) => {
                 let data = new Date(pacoteApi.data);
-                return new Pacote(pacoteApi.nome, pacoteApi.descricao, data, pacoteApi.status, pacoteApi.id);
+                return new Pacote(pacoteApi.nome, pacoteApi.descricao, data, pacoteApi.status, pacoteApi.id.toString());
             });
         });
     }
