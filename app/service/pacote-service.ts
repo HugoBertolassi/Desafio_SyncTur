@@ -1,7 +1,7 @@
 import { PacoteInterface } from "../interface/pacoteInterface.js";
 import { Pacote } from "../model/pacote.js";
 
-//consumo da api
+//consumo da api de dados de pacote
 export class PacoteService{
     private api:string="https://62361b7feb166c26eb2f488a.mockapi.io/pacotes";
 
@@ -11,10 +11,7 @@ export class PacoteService{
             .then((dados:PacoteInterface[])=>{
                 
                 return dados.map((pacoteApi)=>{
-                   /* console.log('dados')
-                    console.log(dados)
-                    console.log("pacoteApi")
-                    console.log(pacoteApi)*/
+              
                     let data= new Date(pacoteApi.data)//corrigir a data recebida pela API
                     
                     return new Pacote(

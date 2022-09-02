@@ -1,21 +1,14 @@
 import { Pacote } from "./pacote.js";
 
-//lista de pacotes
+//Classe para armazenar a lista de pacotes
 export class Pacotes{
-    //private botaoEditar:HTMLButtonElement//NodeList
     private pacotes:Pacote[]=[]
-    /*constructor(){
-        this.botaoEditar=document.querySelector("#editar1") as HTMLButtonElement
-    }*/
-
+    
     public adicionar(pacote:Pacote){
         this.pacotes.push(pacote);
     }
-    public editar(seletor:string,pacote:Pacote):void{
-        this.pacotes.push(pacote);
-
-    }
-
+    
+     //Exclui o pacote apartir do seletor #Excluir do HTML 
     public excluir(seletor:string,mensagem:boolean):void{
         let a=seletor.slice(8)//tratamento da string para retornar o id
         let i:number=0;
@@ -28,6 +21,7 @@ export class Pacotes{
         if(mensagem==true){alert(`Pacote ${this.pacotes[i].nome} excluido com sucesso`)}
     }
 
+    //seleciona o pacote apartir do seletor #Editar do HTML 
     public selecionar(seletor:string):Pacote{
         let a=seletor.slice(7)//tratamento da string para retornar o id
         let i:number=0;
@@ -45,6 +39,7 @@ export class Pacotes{
         return [...this.pacotes]
     }
 
+    //retorna o ultimo ID +1 da lista de pacotes
     public lastID():string{
         let maiorId=Number(this.pacotes[0].id);
         this.pacotes.map((data,index)=>{
@@ -52,7 +47,7 @@ export class Pacotes{
                 maiorId=Number(data.id);
             }  
         })
-        maiorId++
+        maiorId++//Retorna o ultimo id mais 1
         let maiorIdString=(maiorId).toString()
         //console.log("O maior ID é:  "+ maiorId)
         return maiorIdString; 

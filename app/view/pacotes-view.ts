@@ -6,7 +6,7 @@ export class PacotesView{
         const elemento=document.querySelector(seletor)
         this.elemento=elemento as HTMLElement;
     }
-
+    //layout da impresssao 
     protected template(model:Pacotes):string{
       return `
             ${model.lista().map(pacote=>{
@@ -30,6 +30,7 @@ export class PacotesView{
         
     }
 
+    //Formatacao da data para padrao dd/mm/yyyy
     protected dataTexto(data:Date):string{
         let dataString:string;
         //tratamento de numero com 1 digito

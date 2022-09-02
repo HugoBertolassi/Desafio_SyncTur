@@ -6,7 +6,7 @@ import { PacoteService } from "../service/pacote-service.js";
 import { PacotesView } from "../view/pacotes-view.js";
 
 
-    export class PacoteController{
+    export class PacoteController {
         //variavesi dom
         private inputPacote:HTMLInputElement;
         private inputStatus:NodeList//HTMLInputElement;
@@ -23,8 +23,10 @@ import { PacotesView } from "../view/pacotes-view.js";
         private pacotes=new Pacotes();
         private pacotesView= new PacotesView("#cards");
         private pacoteService= new PacoteService();
+    
         
         constructor(){
+            
             this.inputPacote=document.querySelector("#nome_pacote") as HTMLInputElement;  
             //this.inputStatus=document.querySelector('input[name="status_pacote"]:checked') as HTMLInputElement; 
             this.inputStatus=document.querySelectorAll('input[name="status_pacote"]') as  NodeList
@@ -34,6 +36,8 @@ import { PacotesView } from "../view/pacotes-view.js";
             this.inputData=document.querySelector("#input-data-viagem") as HTMLInputElement;  
             this.inputDescricaoPacote=document.querySelector("#txt_descricao_pacote") as HTMLInputElement;
             this.inputID=document.querySelector("#input_ID") as HTMLInputElement;
+            
+            //cria event listener do botao editar
             this.btnEditar=document.querySelector("#btn_editar2") as HTMLButtonElement
             this.btnEditar.addEventListener('click',()=>{
                 this.btnEditar.style.display="none";
@@ -45,9 +49,7 @@ import { PacotesView } from "../view/pacotes-view.js";
         }
 
         adiciona(retorna?:boolean){
-            //console.log(this.inputStatus)
-            //tratamento de dados
-            //console.log(dataInput)
+            
             if(this.inputID.value=="0"){
                 this.inputID.value=this.pacotes.lastID()
             }
@@ -72,7 +74,7 @@ import { PacotesView } from "../view/pacotes-view.js";
                 this.inputPacote.value,
                 this.inputDescricaoPacote.value,
                 this.inputData.value,
-                this.inputStatus,
+                this.radioAtivoToBoolean(this.inputStatus),
                 this.inputID.value
             )
             //console.log(pacote);
@@ -90,19 +92,6 @@ import { PacotesView } from "../view/pacotes-view.js";
 
         selecionar(seletor:string):Pacote{
             const pacote=this.pacotes.selecionar(seletor)
-            
-            //mostrar os dados para editar
-           /* this.inputPacote.value=pacote.nome;
-            this.inputDescricaoPacote.value=pacote.descricao;
-            this.inputData.value=this.dataTexto(pacote.data);
-            this.inputID.value=pacote.id.toString()
-            console.log("criar codigo do status")
-            
-            this.btnCadastrar.style.display="none"
-            this.btnEditar.style.display="block"
-            console.log(pacote)            
-
-            AtualizarEventListenerCards(500)*/
             return(pacote)
         }
 
@@ -131,20 +120,8 @@ import { PacotesView } from "../view/pacotes-view.js";
             else{
                 throw Error("MEtodo em editar nao encontrado")
             }
-            
-           //console.log(this.pacotes.lista());
-            
-            
-            /*
-            this.inputPacote.value=pacote.nome;
-            this.inputDescricaoPacote.value=pacote.descricao;
-             this.inputData.value=this.dataTexto(pacote.data);*/
-            //this.inputStatus=pacote.status;
-            
-            
-            //this.pacotes.editar(seletor,pacote)
-            //console.log(pacote)
-            AtualizarEventListenerCards(100)
+          
+            AtualizarEventListenerCards(500)
             this.pacotesView.update(this.pacotes);
         }
 
@@ -154,12 +131,12 @@ import { PacotesView } from "../view/pacotes-view.js";
                 mensagem=false;
             }
             this.pacotes.excluir(seletor,mensagem);
-            //console.log(this.pacotes.lista());
             AtualizarEventListenerCards(1000)
             this.pacotesView.update(this.pacotes);
 
         }
 
+        //chama api de importacao dos dados
         public importaDados(){
             this.pacoteService.obterPacotes()
                 .then(pacotesApi=>{//ista de pacotes
@@ -171,6 +148,7 @@ import { PacotesView } from "../view/pacotes-view.js";
             )    
         }
 
+        //formata data para colocar dentro do input date
         protected dataTexto(data:Date):string{
             let dataString:string;
             
@@ -189,8 +167,10 @@ import { PacotesView } from "../view/pacotes-view.js";
                 this.inputDescricaoPacote.value="";
                 this.inputData.value="";
                 this.inputID.value="0";
-                console.log("limparCamposInputs:criar codigo do status")
+                
         }
+
+        // Marca o button selecionado
         protected injecaoRadioButtonStatus(pacote:Pacote,tratamentoInjecaodireta?:boolean):void{
 
             //codigo tratamento radio button
@@ -205,5 +185,27 @@ import { PacotesView } from "../view/pacotes-view.js";
             else(
                 console.log("Status do botao nao encontrado")
             )    
+        }
+
+        //trata o radio para retornar boolean
+        protected radioAtivoToBoolean(statusString:any):boolean{
+            let _status1: string
+            let _status3: boolean = false;
+            for (let i = 0; i < statusString.length; i++) {
+                
+                if (statusString[i].checked===true) {
+                    _status1 = statusString[i].value;
+                    //console.log(`status1 ` + _status1)
+    
+                    if (_status1 == "ativo") {
+                        _status3 = true;
+                    }
+                    else {
+                        _status3 = false;
+                    }
+                    //console.log(_status3)
+                }
+            }
+            return _status3
         }
     }

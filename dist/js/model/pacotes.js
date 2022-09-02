@@ -5,9 +5,6 @@ export class Pacotes {
     adicionar(pacote) {
         this.pacotes.push(pacote);
     }
-    editar(seletor, pacote) {
-        this.pacotes.push(pacote);
-    }
     excluir(seletor, mensagem) {
         let a = seletor.slice(8);
         let i = 0;

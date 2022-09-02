@@ -41,7 +41,7 @@ export class PacoteController {
             this.inputPacote.focus();
             return alert("Nome do pacote Invalido");
         }
-        const pacote = Pacote.criar(this.inputPacote.value, this.inputDescricaoPacote.value, this.inputData.value, this.inputStatus, this.inputID.value);
+        const pacote = Pacote.criar(this.inputPacote.value, this.inputDescricaoPacote.value, this.inputData.value, this.radioAtivoToBoolean(this.inputStatus), this.inputID.value);
         this.pacotes.adicionar(pacote);
         AtualizarEventListenerCards(1000);
         this.pacotesView.update(this.pacotes);
@@ -75,7 +75,7 @@ export class PacoteController {
         else {
             throw Error("MEtodo em editar nao encontrado");
         }
-        AtualizarEventListenerCards(100);
+        AtualizarEventListenerCards(500);
         this.pacotesView.update(this.pacotes);
     }
     excluir(seletor, mensagem) {
@@ -109,7 +109,6 @@ export class PacoteController {
         this.inputDescricaoPacote.value = "";
         this.inputData.value = "";
         this.inputID.value = "0";
-        console.log("limparCamposInputs:criar codigo do status");
     }
     injecaoRadioButtonStatus(pacote, tratamentoInjecaodireta) {
         if (pacote.status == true) {
@@ -120,5 +119,21 @@ export class PacoteController {
         }
         else
             (console.log("Status do botao nao encontrado"));
+    }
+    radioAtivoToBoolean(statusString) {
+        let _status1;
+        let _status3 = false;
+        for (let i = 0; i < statusString.length; i++) {
+            if (statusString[i].checked === true) {
+                _status1 = statusString[i].value;
+                if (_status1 == "ativo") {
+                    _status3 = true;
+                }
+                else {
+                    _status3 = false;
+                }
+            }
+        }
+        return _status3;
     }
 }

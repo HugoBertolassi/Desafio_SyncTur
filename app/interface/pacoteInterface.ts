@@ -1,3 +1,4 @@
+//inerface para formatar os dados recebidos pela api
 export interface PacoteInterface{
     nome:string;
     descricao:string;

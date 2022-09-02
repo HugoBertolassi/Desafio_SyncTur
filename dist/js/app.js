@@ -2,6 +2,10 @@ import { PacoteController } from "./controller/pacote-controller.js";
 const pacoteController = new PacoteController();
 const btn_cadastrar = document.querySelector("#btn_cadastrar");
 const btn_editar = document.querySelector("#btn_editar");
+window.onload = () => {
+    pacoteController.importaDados();
+    AtualizarEventListenerCards(3000);
+};
 export function AtualizarEventListenerCards(miliseconds) {
     setTimeout(() => {
         var _a, _b;
@@ -21,10 +25,6 @@ export function AtualizarEventListenerCards(miliseconds) {
         }
     }, miliseconds);
 }
-window.onload = () => {
-    pacoteController.importaDados();
-    AtualizarEventListenerCards(3000);
-};
 if (btn_cadastrar) {
     btn_cadastrar.addEventListener('click', event => {
         event.preventDefault();
