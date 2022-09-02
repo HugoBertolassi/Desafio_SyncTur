@@ -5,14 +5,17 @@ const btn_editar = document.querySelector("#btn_editar");
 export function AtualizarEventListenerCards(miliseconds) {
     setTimeout(() => {
         var _a, _b;
-        let tamanho = document.querySelectorAll(".editar");
+        let tamanho;
+        let tamanhoNodeList = document.querySelectorAll(".editar");
+        tamanho = tamanhoNodeList;
         console.log("tamnho length: " + tamanho.length);
         for (let i = 0; i < tamanho.length; i++) {
-            let seletor = "#editar" + i.toString();
+            let id = tamanho[i].getAttribute("value");
+            let seletor = "#editar" + id.toString();
             (_a = document.querySelector(seletor)) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
                 pacoteController.editar(1, seletor);
             });
-            let seletor1 = "#excluir" + i.toString();
+            let seletor1 = "#excluir" + id.toString();
             (_b = document.querySelector(seletor1)) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
                 pacoteController.excluir(seletor1);
             });

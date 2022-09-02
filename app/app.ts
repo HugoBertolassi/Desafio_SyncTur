@@ -8,18 +8,34 @@ const btn_editar=document.querySelector("#btn_editar")
 
 export function  AtualizarEventListenerCards(miliseconds:number){
     setTimeout(() => {
-    let tamanho=document.querySelectorAll(".editar")
+    let tamanho//=document.getElementsByClassName("editar")
+    let tamanhoNodeList=document.querySelectorAll(".editar")
+    //let tamanhoHTMLCollection=document.getElementsByClassName("editar")
+    //tamanho=tamanhoHTMLCollection
+    tamanho=tamanhoNodeList
+    
+    //console.log(tamanho[0].getAttribute("id")) //estrutura para pegar o valor de um nodelist
+    //console.log(tamanho[0].getAttribute("value"))
+    //console.log(tamanho)
+    /*let lastId=0;
+    //funcao pegar ai
+    tamanho.map((data,index)=>{
+        if(data.id>){
+             i=index;
+        }  
+    })*/
     console.log("tamnho length: "+tamanho.length)
     for(let i=0;i<tamanho.length;i++){
-        let seletor="#editar"+i.toString()
-        document.querySelector(seletor)?.addEventListener('click',()=>{
-            pacoteController.editar(1,seletor)//foi chamado um metodo diferente para a pessoa poder importar e editar os dados e depois incluir
-        })
-        let seletor1="#excluir"+i.toString()
-        document.querySelector(seletor1)?.addEventListener('click',()=>{
-            pacoteController.excluir(seletor1)
-           // console.log(seletor1)
-        })
+            let id=tamanho[i].getAttribute("value") as string//garante que o valor o event listener vai ser criado conforme o array
+            let seletor="#editar"+id.toString()
+            document.querySelector(seletor)?.addEventListener('click',()=>{
+                pacoteController.editar(1,seletor)//foi chamado um metodo diferente para a pessoa poder importar e editar os dados e depois incluir
+            })
+            let seletor1="#excluir"+id.toString()
+            document.querySelector(seletor1)?.addEventListener('click',()=>{
+                pacoteController.excluir(seletor1)
+                // console.log(seletor1)
+            })
     }
   }, miliseconds)}
   

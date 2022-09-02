@@ -86,7 +86,7 @@ export class PacoteController {
     }
     dataTexto(data) {
         let dataString;
-        let mes = (data.getMonth() < 10 ? "0" + (data.getMonth() + 1).toString() : (data.getMonth() + 1).toString());
+        let mes = (data.getMonth() < 9 ? "0" + (data.getMonth() + 1).toString() : (data.getMonth() + 1).toString());
         let dia = (data.getDate() < 10 ? "0" + data.getDate().toString() : data.getDate().toString());
         dataString = (data.getFullYear().toString() + "-"
             + mes + "-"

@@ -159,7 +159,7 @@ import { PacotesView } from "../view/pacotes-view.js";
         protected dataTexto(data:Date):string{
             let dataString:string;
             
-            let mes=(data.getMonth()<10 ? "0"+(data.getMonth()+1).toString():(data.getMonth()+1).toString())//tratamento do texto mes <q 10
+            let mes=(data.getMonth()<9 ? "0"+(data.getMonth()+1).toString():(data.getMonth()+1).toString())//tratamento do texto mes <q 10
             let dia=(data.getDate()<10 ? "0"+data.getDate().toString():data.getDate().toString())//tratamento do texto dia < q 10
             
             dataString=(data.getFullYear().toString()+"-"
