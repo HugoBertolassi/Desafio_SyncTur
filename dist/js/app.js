@@ -8,7 +8,6 @@ export function AtualizarEventListenerCards(miliseconds) {
         let tamanho;
         let tamanhoNodeList = document.querySelectorAll(".editar");
         tamanho = tamanhoNodeList;
-        console.log("tamnho length: " + tamanho.length);
         for (let i = 0; i < tamanho.length; i++) {
             let id = tamanho[i].getAttribute("value");
             let seletor = "#editar" + id.toString();

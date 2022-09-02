@@ -23,16 +23,32 @@ export class PacoteController {
         });
         this.btnCadastrar = document.querySelector("#btn_cadastrar");
     }
-    adiciona() {
+    adiciona(retorna) {
         if (this.inputID.value == "0") {
             this.inputID.value = this.pacotes.lastID();
         }
+        let dataAtual = new Date();
+        let dataInput = new Date(this.inputData.value);
+        if (dataInput < dataAtual) {
+            this.inputData.focus();
+            return alert("Data menor que a atual, favor checar");
+        }
+        if (!this.inputData.value) {
+            this.inputData.focus();
+            return alert("Data invalida");
+        }
+        if (!this.inputPacote.value) {
+            this.inputPacote.focus();
+            return alert("Nome do pacote Invalido");
+        }
         const pacote = Pacote.criar(this.inputPacote.value, this.inputDescricaoPacote.value, this.inputData.value, this.inputStatus, this.inputID.value);
         this.pacotes.adicionar(pacote);
-        console.log(this.pacotes.lista());
         AtualizarEventListenerCards(1000);
         this.pacotesView.update(this.pacotes);
         this.limparCamposInputs();
+        if (retorna) {
+            return true;
+        }
     }
     selecionar(seletor) {
         const pacote = this.pacotes.selecionar(seletor);
@@ -41,37 +57,32 @@ export class PacoteController {
     editar(etapa, seletor) {
         if (etapa == 1 && seletor) {
             const pacote = this.pacotes.selecionar(seletor);
-            if (pacote.status == true) {
-                this.inputStatusAtivo.checked = true;
-                this.inputStatusAtivo.checked = true;
-                console.log("status vedadeiro");
-            }
-            else if (pacote.status == false) {
-                this.inputStatusInativo.checked = true;
-                console.log("status falso");
-            }
-            else
-                (console.log("Status do botao nao encontrado"));
             this.inputPacote.value = pacote.nome;
             this.inputDescricaoPacote.value = pacote.descricao;
             this.inputData.value = this.dataTexto(pacote.data);
             this.inputID.value = pacote.id.toString();
-            console.log("criar codigo do status");
+            this.injecaoRadioButtonStatus(pacote);
+            window.scrollTo(0, 0);
             this.btnCadastrar.style.display = "none";
             this.btnEditar.style.display = "block";
         }
         else if (etapa == 2) {
-            this.excluir(seletor);
-            this.adiciona();
+            if (this.adiciona(true)) {
+                this.excluir(seletor, false);
+                alert(`Pacote editado com sucesso`);
+            }
         }
         else {
             throw Error("MEtodo em editar nao encontrado");
         }
-        AtualizarEventListenerCards(1000);
+        AtualizarEventListenerCards(100);
         this.pacotesView.update(this.pacotes);
     }
-    excluir(seletor) {
-        this.pacotes.excluir(seletor);
+    excluir(seletor, mensagem) {
+        if (!mensagem) {
+            mensagem = false;
+        }
+        this.pacotes.excluir(seletor, mensagem);
         AtualizarEventListenerCards(1000);
         this.pacotesView.update(this.pacotes);
     }
@@ -99,5 +110,15 @@ export class PacoteController {
         this.inputData.value = "";
         this.inputID.value = "0";
         console.log("limparCamposInputs:criar codigo do status");
+    }
+    injecaoRadioButtonStatus(pacote, tratamentoInjecaodireta) {
+        if (pacote.status == true) {
+            this.inputStatusAtivo.checked = true;
+        }
+        else if (pacote.status == false) {
+            this.inputStatusInativo.checked = true;
+        }
+        else
+            (console.log("Status do botao nao encontrado"));
     }
 }

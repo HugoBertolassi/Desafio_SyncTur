@@ -24,7 +24,7 @@ export function  AtualizarEventListenerCards(miliseconds:number){
              i=index;
         }  
     })*/
-    console.log("tamnho length: "+tamanho.length)
+    //console.log("tamnho length: "+tamanho.length)
     for(let i=0;i<tamanho.length;i++){
             let id=tamanho[i].getAttribute("value") as string//garante que o valor o event listener vai ser criado conforme o array
             let seletor="#editar"+id.toString()

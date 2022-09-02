@@ -16,7 +16,7 @@ export class Pacotes{
 
     }
 
-    public excluir(seletor:string):void{
+    public excluir(seletor:string,mensagem:boolean):void{
         let a=seletor.slice(8)//tratamento da string para retornar o id
         let i:number=0;
         this.pacotes.map((data,index)=>{
@@ -25,6 +25,7 @@ export class Pacotes{
             }  
         })
         this.pacotes.splice(i,1)//pega o indice de referencia, apaga
+        if(mensagem==true){alert(`Pacote ${this.pacotes[i].nome} excluido com sucesso`)}
     }
 
     public selecionar(seletor:string):Pacote{

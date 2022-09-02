@@ -8,7 +8,7 @@ export class Pacotes {
     editar(seletor, pacote) {
         this.pacotes.push(pacote);
     }
-    excluir(seletor) {
+    excluir(seletor, mensagem) {
         let a = seletor.slice(8);
         let i = 0;
         this.pacotes.map((data, index) => {
@@ -17,6 +17,9 @@ export class Pacotes {
             }
         });
         this.pacotes.splice(i, 1);
+        if (mensagem == true) {
+            alert(`Pacote ${this.pacotes[i].nome} excluido com sucesso`);
+        }
     }
     selecionar(seletor) {
         let a = seletor.slice(7);

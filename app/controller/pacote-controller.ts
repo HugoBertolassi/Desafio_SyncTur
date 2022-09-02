@@ -44,12 +44,29 @@ import { PacotesView } from "../view/pacotes-view.js";
             
         }
 
-        adiciona(){
+        adiciona(retorna?:boolean){
             //console.log(this.inputStatus)
             //tratamento de dados
+            //console.log(dataInput)
             if(this.inputID.value=="0"){
                 this.inputID.value=this.pacotes.lastID()
             }
+
+            let dataAtual=new Date();
+            let dataInput=new Date(this.inputData.value)
+            if( dataInput< dataAtual ){
+                this.inputData.focus();
+                return alert("Data menor que a atual, favor checar")
+            }
+            if(!this.inputData.value){    
+                this.inputData.focus();
+                return alert("Data invalida")
+            }
+            if(!this.inputPacote.value){    
+                this.inputPacote.focus();
+                return alert("Nome do pacote Invalido")
+            }   
+            
 
             const pacote= Pacote.criar(
                 this.inputPacote.value,
@@ -60,11 +77,15 @@ import { PacotesView } from "../view/pacotes-view.js";
             )
             //console.log(pacote);
             this.pacotes.adicionar(pacote);
-            console.log(this.pacotes.lista());
+            //console.log(this.pacotes.lista());
             
             AtualizarEventListenerCards(1000)
             this.pacotesView.update(this.pacotes);
             this.limparCamposInputs()
+
+            if(retorna){
+                return true;
+            }
         }
 
         selecionar(seletor:string):Pacote{
@@ -89,33 +110,23 @@ import { PacotesView } from "../view/pacotes-view.js";
             //pegar os dados e colocar na tela
            if(etapa==1 && seletor){
                 const pacote=this.pacotes.selecionar(seletor)
-
-                //codigo tratamento radio button
-                if(pacote.status==true){
-                    this.inputStatusAtivo.checked=true;
-                    this.inputStatusAtivo.checked=true;
-                    console.log("status vedadeiro")
-                }
-                else if(pacote.status==false){
-                    this.inputStatusInativo.checked=true;
-                    console.log("status falso")
-                }
-                else(
-                    console.log("Status do botao nao encontrado")
-                )    
+                
                 //injecao dos dados no html
                 this.inputPacote.value=pacote.nome;
                 this.inputDescricaoPacote.value=pacote.descricao;
                 this.inputData.value=this.dataTexto(pacote.data);
                 this.inputID.value=pacote.id.toString()
-                console.log("criar codigo do status")
-            
+                this.injecaoRadioButtonStatus(pacote)
+                window.scrollTo(0,0)
+                
                 this.btnCadastrar.style.display="none"
                 this.btnEditar.style.display="block"            
             }
             else if(etapa==2){//gravar a informacao e excluir a anterior
-                this.excluir(seletor)
-                this.adiciona()
+                if(this.adiciona(true)){
+                    this.excluir(seletor,false)
+                    alert(`Pacote editado com sucesso`)    
+                }
             }
             else{
                 throw Error("MEtodo em editar nao encontrado")
@@ -133,12 +144,16 @@ import { PacotesView } from "../view/pacotes-view.js";
             
             //this.pacotes.editar(seletor,pacote)
             //console.log(pacote)
-            AtualizarEventListenerCards(1000)
+            AtualizarEventListenerCards(100)
             this.pacotesView.update(this.pacotes);
         }
-        excluir(seletor:string){
+
+        excluir(seletor:string,mensagem?:boolean){
             //console.log(this.pacotes.lista());
-            this.pacotes.excluir(seletor);
+            if(!mensagem){
+                mensagem=false;
+            }
+            this.pacotes.excluir(seletor,mensagem);
             //console.log(this.pacotes.lista());
             AtualizarEventListenerCards(1000)
             this.pacotesView.update(this.pacotes);
@@ -175,5 +190,20 @@ import { PacotesView } from "../view/pacotes-view.js";
                 this.inputData.value="";
                 this.inputID.value="0";
                 console.log("limparCamposInputs:criar codigo do status")
+        }
+        protected injecaoRadioButtonStatus(pacote:Pacote,tratamentoInjecaodireta?:boolean):void{
+
+            //codigo tratamento radio button
+            if(pacote.status==true){
+                this.inputStatusAtivo.checked=true;
+                //console.log("status vedadeiro")
+            }
+            else if(pacote.status==false){
+                this.inputStatusInativo.checked=true;
+                //console.log("status falso")
+            }
+            else(
+                console.log("Status do botao nao encontrado")
+            )    
         }
     }
