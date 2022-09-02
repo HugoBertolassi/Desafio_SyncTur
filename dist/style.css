@@ -204,3 +204,29 @@ input[type="radio"] {
 #input_ID{
     display: none;
 }
+
+footer{
+    width: 100%;
+    background-color: var(--cor-primaria);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--branco);
+    height: 250px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#footer1{
+    margin-top:-60px;
+    margin-right: 40px;
+    
+    }
+#footer2{
+
+    border-left:1px solid var(--branco) ;
+    padding:20px
+}
+#footer2 p{
+    margin-top:10px;
+}

@@ -12,9 +12,9 @@ export class PacotesView{
             ${model.lista().map(pacote=>{
             return`
             <div class="cards-card">
-                <h2>${pacote.id}-${pacote.nome}</h2>
+                <h2>${pacote.nome}</h2>
                 <p>${pacote.descricao}</p>
-                <p>Data de viagem:${this.dataTexto(pacote.data)}</p>
+                <p><b>Data de viagem:${this.dataTexto(pacote.data)}<b></p>
                 <div class="cards-card-botoes">
                     <button class="editar" id="editar${pacote.id}" value="${pacote.id}">Editar</button>
                     <button class="excluir" id="excluir${pacote.id}" value="${pacote.id}">Excluir</button>
